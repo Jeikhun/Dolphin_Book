@@ -1,0 +1,48 @@
+﻿@model Setting
+
+<div class="container" style="margin: 16px;">
+	<div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+	<form method="post" enctype="multipart/form-data">
+		<div class="form-group">
+			<label asp-for="Area1">Name:</label>
+			<input class="form-control" asp-for="Area1" />
+			<span asp-validation-for="Area1" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Area2">Name:</label>
+			<input class="form-control" asp-for="Area2" />
+			<span asp-validation-for="Area2" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Area3">Name:</label>
+			<input class="form-control" asp-for="Area3" />
+			<span asp-validation-for="Area3" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Area4">Name:</label>
+			<input class="form-control" asp-for="Area4" />
+			<span asp-validation-for="Area4" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Area5">Name:</label>
+			<input class="form-control" asp-for="Area5" />
+			<span asp-validation-for="Area5" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Area6">Name:</label>
+			<input class="form-control" asp-for="Area6" />
+			<span asp-validation-for="Area6" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.FormFile">Photo:</label>
+			<input class="form-control" type="file" asp-for="@Model.FormFile" />
+			<span asp-validation-for="@Model.FormFile" class="text text-danger"></span>
+		</div>
+		<div>
+			<img style="width:100px;height:100px; margin: 14px 0px;" src="~/admin/img/images/@Model.Image" />
+		</div>
+
+		@Html.AntiForgeryToken()
+		<button type="submit" style="width: 180px; margin-top: 16px;" class="btn btn-success btn-rounded">Create</button>
+	</form>
+</div>

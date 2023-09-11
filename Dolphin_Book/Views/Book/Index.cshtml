@@ -1,0 +1,192 @@
+﻿@section link {
+    <link rel="stylesheet" href="~/assets/css/book.css">
+}
+
+@section script {
+    <script src="~/assets/js/book.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/Layout.js"></script>
+}
+
+@model BookVM;
+@{
+    int rIC = 0;
+}
+<div class="book-page-header">
+    <div class="search-result">
+        <h2>Kitab</h2>
+        <p>@Model.BooksCount nəticə tapıldı</p>
+    </div>
+    <div class="search-sort">
+        <h5>Sırala</h5>
+        <i class="bi bi-chevron-down"></i>
+    </div>
+</div>
+<div class="filter-and-grid">
+
+    <section class="book-filter">
+        <div class="filter">
+            <form class="authors-form" method="get" asp-controller="book" asp-action="index">
+
+            
+            <li class="cat-item">
+                <div class="cat-item-2">
+                    <a href="#">Kategoriya</a>
+                    <span class="toggle-button">
+                        <i class="bi bi-plus-lg"></i>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+
+                </div>
+                <ul class="children1" id="category-children">
+                    <li class="cat-item">
+                        <ul>
+                            @foreach(var category in Model.categories)
+                            {
+                                    rIC++;
+                                    <li class="cat-item">
+                                        <a class="cat-filter-nav" id="balabey@(rIC)" asp-controller="book" asp-action="index" asp-route-categoryid="@category.Id">@category.Name</a>
+                                    
+                                </li>
+                                
+                            }
+                           
+                        </ul>
+
+                    </li>
+                </ul>
+            </li>
+            <li class="cat-item">
+                <div class="cat-item-2">
+                    <a href="#">Yazar</a>
+                    <span class="toggle-button">
+                        <i class="bi bi-plus-lg"></i>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+
+                </div>
+                <ul class="children1">
+                    <li class="pub-item">
+                            @foreach(var author in Model.Authors)
+                            {
+                                <h1 hidden>@author.Id</h1>
+                                <label for="">
+                                    <input id="@author.Id" type="checkbox" name="" >
+                                    <span>@author.FullName</span>
+                                </label>
+                            }
+
+                    </li>
+                </ul>
+            </li>
+            <li class="cat-item">
+                <div class="cat-item-2">
+                    <a href="#">Nəşriyyat</a>
+                    <span class="toggle-button">
+                        <i class="bi bi-plus-lg"></i>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+
+                </div>
+                <ul class="children1">
+                    <li class="pub-item">
+                            @foreach(var publisher in Model.Publishers)
+                            {
+                                
+                                <label for="">
+                                    <input type="checkbox" name="" id="">
+                                    <span>@publisher.Name</span>
+                                </label>
+                            }
+                    </li>
+                </ul>
+            </li>
+            <div class="cat-item">
+                <div class="cat-item-2">
+                    <a href="#">Qiymət</a>
+                    <span class="toggle-button">
+                        <i class="bi bi-plus-lg"></i>
+                        <i class="bi bi-dash-lg"></i>
+                    </span>
+
+                </div>
+                <div class="children1" style="display: block;" id="filter-children">
+                    <div class="cat-item">
+                            <div class="form-group" id="price-inputs">
+                                <input type="number" asp-for="MinPrice" class="price-input" placeholder="Min-Price" >
+
+                                <input type="number" asp-for="MaxPrice" class="price-input" placeholder="Max-Price" >
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+            <button type="submit" id="price-button">Axtar</button>
+            </form>
+        </div>
+    </section>
+    <section class="books-grid" >
+        @if (Model.books.Count > 0)
+        {
+
+
+            @foreach (var book in Model.books)
+            {
+                <div class="item" id="book-carousel-first">
+                    <a asp-controller="book" asp-action="bookdetails" asp-route-id="@book.Id" style="text-decoration: none; color: black;">
+                        <div class="book-carousel-image">
+                            <img style="width: 150px; height: 230px; object-fit: cover;" src="~/admin/img/images/@book.Image" alt="">
+                        </div>
+                        <div class="book-carousel-detail">
+                            <h5 id="book-author">@book.Author.FullName</h5>
+                            <p>@book.Name</p>
+                            <h5>@book.SalePrice<span> ₼</span></h5>
+                        </div>
+
+                    </a>
+                    <div class="basket-button">
+
+                        <button id="addToBookBasket" data-id="@book.Id" data-type="@book.ProductType?.Type" data-count="@book.StockCount"><p>Səbətə at</p></button>
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div id="search-invaalid" style=" margin: auto; font-size: 28px; color: gray; min-width: 40vw; margin-left: 180px;">
+                <h4>Axtarışa uyğun heç bir nəticə tapılmadı...</h4>
+            </div>
+        }
+    </section>
+    <div id="search-invalid" style=" margin: auto; font-size: 28px; color: gray;">
+            <h4>Axtarışa uyğun heç bir nəticə tapılmadı...</h4>
+    </div>
+</div>
+
+        <div class="pagination">
+            <span class="pagination__number-indicator"></span>
+            @{
+                var prevPage = @Model.Page - 1;
+
+                <a class="@(Model.Page > 1 ? "pagination__arrow" : "pagination__arrow pagination__arrow--disabled") " asp-action="index" asp-controller="book" asp-route-page="@prevPage">
+                    <span class="pagination__arrow-half"></span>
+                    <span class="pagination__arrow-half"></span>
+                </a>
+             }
+             @for (int i = 1; i <= Model.PageCount; i++)
+             {
+                <a asp-action="index" asp-controller="book" asp-route-page="@i" class="@(Model.Page==i ? "pagination__number--active" : "pagination__number")">@i</a>
+
+             }
+
+            @{
+                    var nextPage = @Model.Page + 1;
+
+                    <a class="@(Model.PageCount != Model.Page ? "pagination__arrow pagination__arrow--right" : "pagination__arrow pagination__arrow--right pagination__arrow--disabled" )" asp-action="index" asp-controller="book" asp-route-page="@nextPage">
+                        <span class="pagination__arrow-half"></span>
+                        <span class="pagination__arrow-half"></span>
+                    </a>
+
+             }
+        </div>

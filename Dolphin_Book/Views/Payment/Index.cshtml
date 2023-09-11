@@ -1,0 +1,204 @@
+﻿@using Dolphin_Book.Core.Entities;
+@using Microsoft.EntityFrameworkCore;
+@inject Dolphin_Book.Service.Services.Interfaces.IBasketService basketService;
+@{
+    Layout = null;
+    double totalPrice = 0;
+    List<Dolphin_Book.Core.ViewModels.BasketListItemVM> vm = await basketService.GetAll();
+}
+@model Setting
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/assets/css/payment.css">
+    <link rel="stylesheet" href="~/assets/js/custom.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="navbar">
+            <div class="navbar-img">
+                <a asp-controller="home" asp-action="index" class="navbar-img-nav">
+
+                    <img src="~/assets/images/image-04-08-23-15-05 (2)-modifieddddd (2).png" alt="">
+                </a>
+            </div>
+            <div class="navigation">
+                <div class="navigation-item">
+                    <div>
+                        <span>1</span>
+                        <p>Səbətim</p>
+                    </div>
+                    <div class="line"></div>
+                    <div>
+                        <span>2</span>
+                        <p>Çatdırılma və Ödəniş</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+<section class="divide">
+    <div class="left_section">
+        <div class="first">
+            <p>Çatdırılma və Ödəniş</p>
+            <div class="adress_div">
+                <span>✓</span>
+                <p>Adres məlumatları </p>
+            </div>
+        </div>
+        <div class="second">
+            <div class="in_gap">
+                <p>Çatdırılma Adresi</p>
+                <p>Əlavə et/Düzəliş et</p>
+            </div>
+            <div class="none_border">
+                <div>
+                    <p>Vadi Aytac</p>
+                    <span>(Bağcılar/İstanbul)</span>
+                </div>
+                <p class="add">
+                    45122 Mh. VD60743, 15 Temmuz mahallesi, Koçman caddesi No:40, İç Kapı No:11
+                    Bağcılar/İSTANBUL
+                </p>
+            </div>
+        </div>
+        <div class="third">
+            <div class="check">
+                <label for="">
+                    <input type="checkbox">
+                </label>
+                <span>Faturam için farklı adres kullan. </span>
+            </div>
+        </div>
+        <div class="fourth">
+            <div class="first">
+                <div class="adress_div">
+                    <span>✓</span>
+                    <p>Ödəniş Üsulu </p>
+                </div>
+                <div class="pay_choose">
+                    <h3>Kredi Kartı / Banka Kartı ile Öde</h3>
+                </div>
+            </div>
+        </div>
+        <div class="fifth">
+            <div>
+                <div class="card_infos">
+                    <input type="text" placeholder="Kart Nömrəsi">
+                    <input type="text" placeholder="Kart Sahibi">
+                    <div class="sml_input">
+                        <input type="text" placeholder="Son Istifade Tarixi*">
+                        <input type="text" placeholder="Guvenlik Kodu* ">
+
+                    </div>
+                    <label for="" class="secure">
+                        <input type="checkbox">
+                        <span> Təhlükəsizliyiniz üçün 3D secure ilə ödəniş edin.</span>
+                    </label>
+                </div>
+                <div class="credit_card">
+                    <img src="/Dolphin_Store/images/Screenshot 2023-09-11 020214.png" alt="" width="47px" height="35px" style="border-radius: 5px;">
+                    <p class="dots">
+                        **** **** **** ****
+                    </p>
+                    <h3>AD SOYAD</h3>
+                    <div class="valid_date">
+                        <p class="valid">VALID THRU</p>
+                        <span>00/00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sixth">
+            <div class="adress_div">
+                <span>✓</span>
+                <p>Çatdırılma Növü </p>
+            </div>
+            <div class="adress_div">
+                <a href="">Dolphin</a>
+                <p>tərəfindən göndəriləcəklər</p>
+            </div>
+        </div>
+        <div class="seventh">
+            <div class="orders">
+                        @foreach (var product in vm)
+                        {
+                                <div>
+                                <div style="border: 1px solid rgb(217, 217, 217); padding: 18px; width: fit-content;">
+                                        <img style="width: 25px;" src="~/admin//img//images/@product.Image" alt="" width="80px">
+                                    </div>
+                                    <h3>@product.PublisherName</h3>
+                                    <span>@product.Name</span>
+                                </div>
+
+                        }
+            </div>
+            <div class="teslimat">
+                <label for="">
+                    <input type="radio">
+                    <span>Standart Teslimat</span>
+                    <p>15:00’a kadar verilen siparişler aynı gün kargoda</p>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="right_section">
+        <div class="orderss">
+            <p>Sifariş</p>
+            <div class="flex">
+                <p>4 məhsul</p>
+                <div class="total1">
+                    <p>Toplam</p>
+                    <p>2.920,40 TL</p>
+                </div>
+                <div class="total2">
+                    <p>Kargo</p>
+                    <div class="free">
+                        <span>Pulsuz</span>
+                        <p>24,90 TL</p>
+                    </div>
+                </div>
+                <div class="checkouts">
+                    <label for="">
+                        <input type="checkbox">
+                        <span>Ön Bilgilendirme Formu ve Mesafeli Satış Sözleşmesi’ni okudum, kabul ediyorum.</span>
+                    </label>
+                    <label for="">
+                        <input type="checkbox">
+                        <span>Mesafeli Satış Sözleşmesi Aydınlatma Metnini’’ni okudum, kabul ediyorum.</span>
+                    </label>
+                </div>
+                <div class="total_amount">
+                    <p>Toplam</p>
+                    <p>
+                        2.920,40 TL
+                    </p>
+                </div>
+                <button class="finish">
+                    Bitir
+                </button>
+            </div>
+
+        </div>
+    </div>
+        </section>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/basket.js"></script>
+    <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</body>
+</html>
