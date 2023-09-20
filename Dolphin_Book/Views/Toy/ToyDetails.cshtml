@@ -5,13 +5,26 @@
 @section script {
     <script src="~/assets/js/toyDetails.js"></script>
     <script src="~/assets/js/Layout.js"></script>
+    <script src="~/assets/js/custom.js"></script>
 }
+@model ToyVM
 
+<div class="toast">
+    <div class="toast-content">
+        <i class="bi toast-check"></i>
+        <div class="message">
+            <span class="message-text text-1">Success</span>
+            <span class="message-text text-2">Məhsul Uğurla Əlavə edildi...</span>
+        </div>
+    </div>
+    <i class="uil uil-multiply toast-close"></i>
+    <div class="progress"></div>
+</div>
 
 <section class="book-info-sec">
     <div class="info-picture">
         <div class="book-picture">
-            <img src="~/assets/images/1684179605-8182CJcXefL.jpg" alt="">
+            <img src="~/admin/img/images/@Model.toy.toyImages.FirstOrDefault(x=>x.isMain).Image" alt="">
             <p>♡</p>
         </div>
     </div>
@@ -19,10 +32,10 @@
         <div class="nesr">
             <div class="info-publisher">
 
-                <h3>Tunc Yayınları</h3>
-                <h5>Meşə ağacinin hekayesi</h5>
+                <h3>@Model.toy.Publisher.Name</h3>
+                <h5>@Model.toy.Name</h5>
             </div>
-            <h6>Agathe Crisstie</h6>
+            @* <h6>Agathe Crisstie</h6> *@
         </div>
         <div class="toys-color">
             <p>Rəng</p>
@@ -31,15 +44,15 @@
     </div>
     <div class="buy-book">
 
-        <h3 class="book-price-one">21AZN</h3>
+        <h3 class="book-price-one">@Model.toy.SalePrice</h3>
         <div class="buy-book-btn" id="buy-book">
-            <h6 class="book-price-two">21AZN</h6>
-            <button><p style="width: 64px;">Səbətə At</p></button>
+            <h6 class="book-price-two">@Model.toy.SalePrice</h6>
+            <button class="toast-btn" id="addToBookBasket" data-id="@Model.Id" data-type="@Model.CategoryType" data-count="@Model.StockCount"><p style="width: 64px;">Səbətə At</p></button>
         </div>
         <div class="book-seller" style="padding: 0px 25px;">
             <div>
                 <p>Satıcı:</p>
-                <h5>Dolphin</h5>
+                <h5>@Model.toy.Seller.Name</h5>
             </div>
             <div>
                 <h5>Satıcıya Sual Ver</h5>

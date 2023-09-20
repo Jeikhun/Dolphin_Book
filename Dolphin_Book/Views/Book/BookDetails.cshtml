@@ -7,7 +7,23 @@
 @section script {
     <script src="~/assets/js/bookDetails.js"></script>
     <script src="~/assets/js/Layout.js"></script>
+    <script src="~/assets/js/custom.js"></script>
 }
+
+
+<div class="toast">
+    <div class="toast-content">
+        <i class="bi bi-check2 toast-check"></i>
+        <div class="message">
+            <span class="message-text text-1">Success</span>
+            <span class="message-text text-2">Your changes has been saved</span>
+        </div>
+    </div>
+    <i class="uil uil-multiply toast-close"></i>
+    <div class="progress"></div>
+</div>
+
+
 <section class="book-info-sec">
     <div class="info-picture">
         <div class="book-picture">
@@ -62,7 +78,7 @@
         <h3 class="book-price-one">@Model.book.SalePrice<span> ₼</span></h3>
         <div class="buy-book-btn" id="buy-book">
             <h6 class="book-price-two">@Model.book.SalePrice<span> ₼</span></h6>
-            <button><p style="width: 64px;">Səbətə At</p></button>
+            <button class="toast-btn" id="addToBookBasket" data-id="@Model.Id" data-type="@Model.CategoryType" data-count="@Model.StockCount"><p style="width: 64px;">Səbətə At</p></button>
         </div>
         <div class="book-seller" style="padding: 0px 25px;">
             <div>

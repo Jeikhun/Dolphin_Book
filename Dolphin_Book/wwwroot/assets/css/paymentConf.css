@@ -1,0 +1,111 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Raleway:wght@400;500&display=swap');
+
+
+:root {
+    --main-font: 'Raleway', sans-serif;
+    --second-font: 'Didot', serif;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#payment__area {
+    width: 100%;
+}
+
+.paymen__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment {
+    margin-top: 80px;
+    width: 400px;
+    height: 550px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .payment img {
+        margin-top: 45px;
+        width: 100px;
+    }
+
+    .payment h2 {
+        margin-top: 20px;
+        font-size: 30px;
+        color: #000;
+        font-family: var( --main-font);
+    }
+
+    .payment p {
+        width: 300px;
+        margin-top: 20px;
+        font-size: 20px;
+        opacity: 0.7;
+        text-align: center;
+        line-height: 30px;
+        font-family: var( --second-font);
+    }
+
+        .payment p span {
+            color: #000;
+            font-weight: 700;
+        }
+
+    .payment .order__detail {
+        margin-top: 20px;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 50px;
+    }
+
+        .payment .order__detail .order h2 {
+            font-family: var( --main-font);
+        }
+
+        .payment .order__detail .order .order__detail__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+            gap: 2rem;
+        }
+
+
+#details-info{
+    font-size: 16px;
+}
+.line {
+    display: block;
+    height: 2px;
+    background-color: rgb(199, 199, 199);
+    margin-top: 5px;
+}
+.order__detail__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+.order__detail__item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-span{
+    font-weight: bold;
+}

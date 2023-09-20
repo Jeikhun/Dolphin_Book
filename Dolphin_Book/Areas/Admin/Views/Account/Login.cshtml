@@ -31,14 +31,10 @@
                 <input asp-for="@Model.Email" placeholder="Username" autocomplete="off">
                 <i class="typcn typcn-eye" id="eye"></i>
                 <input asp-for="@Model.Password" placeholder="Passsword" id="pwd" autocomplete="off">
-                <div style="color:red !important;font-size:14px !important;display:block;" asp-validation-summary="ModelOnly"></div>
+                <div style="color:red !important;font-size:14px !important;display:block; margin-top: 36px;" asp-validation-summary="ModelOnly"></div>
                 <a asp-action="forgotpassword" asp-controller="account" asp-area="admin" class="forgetpass">Forget Password?</a>
                 <button type="submit" class="btn1">Login</button>
             </form>
-                <a asp-area="admin" asp-controller="account" asp-action="register">
-
-                    <button class="btn2">Register</button>
-                </a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>

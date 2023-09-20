@@ -1,10 +1,11 @@
 ﻿using Dolphin_Book.Core.Entities;
+using Dolphin_Book.Core.Entities.BaseEntities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Dolphin_Book.ViewModels
 {
-    public class BookVM
+    public class BookVM:BaseEntity
     {
         public List<Book>? books { get; set; }
         public Book? book { get; set; }
@@ -20,7 +21,9 @@ namespace Dolphin_Book.ViewModels
 
         public int Take { get; set; } = 4;
 
-        public int PageCount { get; set; }
+        public int? PageCount { get; set; }
+        public string? CategoryType { get; set; }
+        public int? StockCount { get; set; }
 
     }
 }

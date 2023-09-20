@@ -5,6 +5,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using static System.Net.Mime.MediaTypeNames;
+using Dolphin_Book.ViewModels;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Dolphin_Book.Controllers
 {
@@ -12,10 +16,12 @@ namespace Dolphin_Book.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IWebHostEnvironment _env;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _env = env;
         }
         [HttpGet]
         public IActionResult Login()
@@ -24,29 +30,29 @@ namespace Dolphin_Book.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(AccountLoginVM vm)
+        public async Task<IActionResult> Login(Dolphin_Book.ViewModels.AccountLoginVM vm)
         {
             if (!ModelState.IsValid) return View();
 
             var user = await _userManager.FindByEmailAsync(vm.Email);
             if (user is null)
             {
-                ModelState.AddModelError(string.Empty, "Email or password is incorrect");
+                ModelState.AddModelError(string.Empty, "Email yaxud şifrə yanlışdır...");
                 return View();
             }
-
+            if (!user.EmailConfirmed)
+            {
+                ModelState.AddModelError(string.Empty, "Email Təsdiqlənməyib...");
+                return View();
+            }
             var result = await _signInManager.PasswordSignInAsync(user, vm.Password, false, false);
             if (!result.Succeeded)
             {
-                ModelState.AddModelError(string.Empty, "Email or password is incorrect");
+                ModelState.AddModelError(string.Empty, "Email yaxud şifrə yanlışdır...");
                 return View();
             }
 
             return RedirectToAction("index", "home");
-
-
-
-
 
 
 
@@ -58,7 +64,7 @@ namespace Dolphin_Book.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(AccountRegisterVM model)
+        public async Task<IActionResult> Register(Dolphin_Book.ViewModels.AccountRegisterVM model)
         {
 
             if (!ModelState.IsValid) return View();
@@ -86,8 +92,18 @@ namespace Dolphin_Book.Controllers
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("jeikhunjalil@gmail.com");
             mail.To.Add(user.Email);
-            mail.Subject = "Reset Password";
+            mail.Subject = "Confirm Email";
             mail.Body = $"<a href='{confirmationLink}'>Confirm Email</a>";
+            string body = string.Empty;
+            string path = Path.Combine(_env.WebRootPath, "assets", "Templates", "email.html");
+            using (StreamReader SourceReader = System.IO.File.OpenText(path))
+            {
+                body = SourceReader.ReadToEnd();
+            }
+            body = body.Replace("{{Link}}", confirmationLink);
+            body = body.Replace("{{Name}}", user.UserName);
+            body = body.Replace("{{Text}}", "Confirm Email");
+            mail.Body = body;
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
@@ -103,7 +119,11 @@ namespace Dolphin_Book.Controllers
             await _userManager.AddToRoleAsync(user, UserRoles.User.ToString());
             TempData["register"] = "Please,verify your email";
 
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction(nameof(VerifyEmail));
+        }
+        public IActionResult VerifyEmail()
+        {
+            return View();
         }
         public async Task<IActionResult> ConfirmEmail(string token, string email)
         {
@@ -115,7 +135,6 @@ namespace Dolphin_Book.Controllers
             }
 
             await _userManager.ConfirmEmailAsync(user, token);
-            await _signInManager.SignInAsync(user, true);
             return RedirectToAction(nameof(Login));
 
 
@@ -146,8 +165,17 @@ namespace Dolphin_Book.Controllers
             mail.From = new MailAddress("jeikhunjalil@gmail.com");
             mail.To.Add(user.Email);
             mail.Subject = "Reset Password";
-            mail.Body = $"<a href='{result}'>Click here</a>";
             mail.IsBodyHtml = true;
+            string body = string.Empty;
+            string path = Path.Combine(_env.WebRootPath, "assets", "Templates", "email.html");
+            using (StreamReader SourceReader = System.IO.File.OpenText(path))
+            {
+                body = SourceReader.ReadToEnd();
+            }
+            body = body.Replace("{{Link}}", result);
+            body = body.Replace("{{Name}}", user.UserName);
+            body = body.Replace("{{Text}}", "Reset Password");
+            mail.Body = body;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.EnableSsl = true;
@@ -156,16 +184,28 @@ namespace Dolphin_Book.Controllers
             smtp.Credentials = networkCredential;
             smtp.Port = 587;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.Send(mail);
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Internet və Email ünvanı yoxlayın..");
+                return View();
+            }
 
             return RedirectToAction(nameof(Login));
         }
         [HttpGet]
         public async Task<IActionResult> ResetPassword(string token, string email)
         {
+             if(token == null || email==null)
+            {
+                return NotFound();
+            }
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null) { return NotFound(); }
-            ResetPasswordVM model = new ResetPasswordVM
+            ResetPassVM model = new ResetPassVM
             {
                 Token = token,
                 Email = email
@@ -173,8 +213,12 @@ namespace Dolphin_Book.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> ResetPassword(ResetPasswordVM vm)
+        public async Task<IActionResult> ResetPassword(ResetPassVM vm)
         {
+            if(!ModelState.IsValid) {
+                return View();
+            
+            }
             var user = await _userManager.FindByEmailAsync(vm.Email);
             if (user == null) { return NotFound(); }
 

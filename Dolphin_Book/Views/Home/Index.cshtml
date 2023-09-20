@@ -8,6 +8,20 @@
     <script src="~/assets/js/custom.js"></script>
 }
 
+
+<div class="toast">
+    <div class="toast-content">
+        <i class="bi toast-check"></i>
+        <div class="message">
+            <span class="message-text text-1">Success</span>
+            <span class="message-text text-2">Məhsul Uğurla Əlavə edildi...</span>
+        </div>
+    </div>
+    <i class="uil uil-multiply toast-close"></i>
+    <div class="progress"></div>
+</div>
+
+
 <section class="slider-sec">
     <!-- Slideshow container -->
     <div class="slideshow-container">
@@ -72,7 +86,7 @@
                 </a>
                         <div class="basket-button">
 
-                            <button id="addToBookBasket" data-id="@item.Id" data-type="@item.ProductType?.Type" data-count="@item.StockCount"><p>Səbətə at</p></button>
+                        <button class="toast-btn" id="addToBookBasket" data-id="@item.Id" data-type="@item.ProductType?.Type" data-count="@item.StockCount"><p>Səbətə at</p></button>
                         </div>
 
                     </div>
@@ -89,18 +103,27 @@
         <div class="owl-carousel owl-theme">
             @foreach(var item in Model.Toys)
             {
-            <div id="toy-carousel" class="item" style="margin-top: 25px; margin-bottom: 25px; padding: 10px 20px 0px 15px;">
+            <div id="toy-carousel" class="item" style="margin-top: 25px; margin-bottom: 25px; padding: 10px 10px 0px 10px;">
+              <a asp-controller="toy" asp-action="toydetails" asp-route-id="@item.Id" style="text-decoration: none; color: black;">
                 <div class="toy-carousel-image">
-                    <img style="width: 150px; height: 230px; object-fit: cover; display: inline-block;" src="~/admin/img/images/@item.toyImages.FirstOrDefault(x=>x.isMain).Image" alt="">
+                    @if(@item.toyImages.FirstOrDefault(x=>x.isMain) != null){
+
+                    <img style="width: 150px; height: 230px; object-fit: contain; display: inline-block;" src="~/admin/img/images/@item?.toyImages?.FirstOrDefault(x=>x.isMain)?.Image" alt="">
+                    }
+                    else{
+                    <img style="width: 150px; height: 230px; object-fit: contain; display: inline-block;" src="~/admin/img/images/@item.toyImages.FirstOrDefault().Image" alt="">
+
+                    }
                 </div>
                 <div class="toy-carousel-detail">
                     <h5>@item.Publisher.Name</h5>
                     <p>@item.Name</p>
                         <h5>@item.SalePrice<span> ₼</span></h5>
                 </div>
+              </a>
                 <div class="toy-basket-button">
 
-                        <button id="addToBookBasket" data-id="@item.Id" data-type="@item.ProductType?.Type" data-count="@item.StockCount"><p>Sebətə at</p></button>
+                        <button class="toast-btn" id="addToBookBasket" data-id="@item.Id" data-type="@item.ProductType?.Type" data-count="@item.StockCount"><p>Səbətə at</p></button>
                 </div>
             </div>
                 

@@ -20,7 +20,15 @@
             {
                 <tr>
                     <th scope="row">@item.Id</th>
-                    <th><img style="width:100px;height:100px; object-fit: contain;" src="~/admin/img/images/@item.toyImages.FirstOrDefault(x=>x.isMain).Image" /></th>
+                    @if(item?.toyImages?.FirstOrDefault(x=>x.isMain) != null)
+                    {
+                        <th><img style="width:100px;height:100px; object-fit: contain;" src="~/admin/img/images/@item.toyImages.FirstOrDefault(x=>x.isMain).Image" /></th>
+                    }
+                    else
+                    {
+                        <th><img style="width:100px;height:100px; object-fit: contain;" src="~/admin/img/images/@item.toyImages.FirstOrDefault().Image" /></th>
+                        
+                    }
                     <td>@item.Name</td>
                     <td>@item.StockCount</td>
                     <td>@item.PurshacePrice</td>

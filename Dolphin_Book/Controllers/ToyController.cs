@@ -117,13 +117,19 @@ namespace Dolphin_Toy.Controllers
 
         public async Task<IActionResult> ToyDetails(int id)
         {
-            ToyVM vm = new ToyVM();
-            vm.toy = await _context.Toys.Where(x => !x.IsDeleted && x.Id == id)
+            Toy? toy = await _context.Toys.Where(x => !x.IsDeleted && x.Id == id)
                 .Include(x => x.ToyCategories)
                  .ThenInclude(x => x.Category)
+                 .Include(x=>x.toyImages)
+                 .Include(x=>x.Publisher)
                 .Include(x => x.Seller)
                     .FirstOrDefaultAsync();
-            if (vm.toy == null)
+            ToyVM vm = new ToyVM();
+            vm.Id = toy.Id;
+            vm.toy = toy;
+            vm.StockCount = toy.StockCount;
+            vm.CategoryType = "toy";
+            if (vm == null)
             {
                 return NotFound();
             }

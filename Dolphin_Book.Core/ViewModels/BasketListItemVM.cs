@@ -11,6 +11,7 @@ namespace Dolphin_Book.Core.ViewModels
         public int Count { get; set; }
         public string? AuthorName { get; set; }
         public string? PublisherName { get; set; }
+        
         public string? type { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Dolphin_Book.Service.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -75,7 +76,7 @@ namespace Dolphin_Book.Service.Services.Implementations
                 {
                     if (type.ToLower() == "book")
                     {
-                        BasketItem basketItem = await _context.BasketItems.Where(x => x.BookId == id && !x.IsDeleted).FirstOrDefaultAsync();
+                        BasketItem? basketItem = basket.BasketItems.Where(x => x.BookId == id && !x.IsDeleted).FirstOrDefault();
                         if (basketItem is null)
                         {
                             basketItem = new BasketItem()
@@ -92,6 +93,11 @@ namespace Dolphin_Book.Service.Services.Implementations
                         {
                             if (stockCount > basketItem.Count)
                                 basketItem.Count += count ?? 1;
+                            else
+                            {
+                                await _context.SaveChangesAsync();
+                                throw new Exception("Not Found");
+                            }
                         }
                     }
                     else
@@ -114,6 +120,11 @@ namespace Dolphin_Book.Service.Services.Implementations
                         {
                             if(stockCount>basketItem.Count)
                             basketItem.Count += count ?? 1;
+                            else
+                            {
+                                await _context.SaveChangesAsync();
+                                throw new Exception("Not Found");
+                            }
                         }
                     }
                 }
@@ -181,6 +192,9 @@ namespace Dolphin_Book.Service.Services.Implementations
                              .Include(x => x.BasketItems)
                              .ThenInclude(x => x.book)
                              .ThenInclude(x => x.Author)
+                             .Include(x => x.BasketItems)
+                             .ThenInclude(x => x.book)
+                             .ThenInclude(x => x.Publisher)
                                .Where(x => !x.IsDeleted && x.UserId == user.Id).FirstOrDefaultAsync();
 
 
@@ -201,7 +215,8 @@ namespace Dolphin_Book.Service.Services.Implementations
                                 Id = item.BookId,
                                 Price = item.book.SalePrice,
                                 AuthorName = item.book.Author.FullName,
-                                type = item.type
+                                PublisherName = item.book.Publisher.Name,
+                                type = "book"
                                 
                             });
 
@@ -216,7 +231,7 @@ namespace Dolphin_Book.Service.Services.Implementations
                                 Id = item.ToyId,
                                 Price = item.toy.SalePrice,
                                 PublisherName = item.toy.Publisher.Name,
-                                type = item.type
+                                type = "toy"
                             });;
                         }
                     }
@@ -241,6 +256,8 @@ namespace Dolphin_Book.Service.Services.Implementations
                                           .Where(x => !x.IsDeleted && x.Id == item.Id)
                                            .Include(x => x.Author)
                                            .Include(x=>x.ProductType)
+                                           .Include(x=>x.Publisher)
+                                           
                                            .FirstOrDefaultAsync();
 						if (book != null)
 						{
@@ -252,6 +269,7 @@ namespace Dolphin_Book.Service.Services.Implementations
 								Name = book.Name,
 								Price = book.SalePrice,
                                 AuthorName = book.Author.FullName,
+                                PublisherName = book.Publisher.Name,
                                 type=book.ProductType.Type
 							});
 
@@ -336,18 +354,17 @@ namespace Dolphin_Book.Service.Services.Implementations
         }
         public async Task RemoveAll()
         {
-            var JsonBasket = _httpContext.HttpContext.Request.Cookies["basket"];
-
-            if (JsonBasket is not null)
+            if (_httpContext.HttpContext.User.Identity.IsAuthenticated)
             {
-                List<BasketVM>? baskets = JsonConvert.DeserializeObject<List<BasketVM>>(JsonBasket);
-
-                foreach (BasketVM item in baskets)
+                User user = await _userManager.FindByNameAsync(_httpContext.HttpContext.User.Identity.Name);
+                Basket? basket = await _context.Baskets.
+                    Include(x => x.BasketItems.Where(y => !y.IsDeleted)).
+                    Where(x => !x.IsDeleted && x.UserId == user.Id).FirstOrDefaultAsync();
+                foreach(var item in basket.BasketItems)
                 {
-                    baskets.Remove(item);
-                    JsonBasket = JsonConvert.SerializeObject(baskets);
-                    _httpContext.HttpContext.Response.Cookies.Append("basket", JsonBasket);
+                    _context.BasketItems.Remove(item);
                 }
+                await _context.SaveChangesAsync();
             }
         }
     }

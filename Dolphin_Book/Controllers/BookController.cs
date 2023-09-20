@@ -115,15 +115,22 @@ namespace Dolphin_Book.Controllers
 
         public async Task<IActionResult> BookDetails(int id)
         {
-            BookVM vm = new BookVM();
-            vm.book = await _context.Books.Where(x => !x.IsDeleted && x.Id==id)
+            
+            Book? book = await _context.Books.Where(x => !x.IsDeleted && x.Id==id)
                 .Include(x => x.BookCategories)
                  .ThenInclude(x => x.Category)
                 .Include(x => x.Author)
                 .Include(x => x.Seller)
             .Include(x => x.Language)
                     .FirstOrDefaultAsync();
-            if (vm.book == null)
+            BookVM? vm = new BookVM();
+
+             vm.Id = book.Id;
+                vm.book = book;
+                vm.StockCount = book.StockCount;
+                vm.CategoryType = "book";
+            
+            if (vm == null)
             {
                 return NotFound();
             }

@@ -1,0 +1,58 @@
+﻿@{
+	Layout = null;
+}
+@model PaymentConfirmVM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/assets/css/paymentConf.css">
+</head>
+<body>
+    <section id="payment__area">
+        <div class="paymen__main">
+            <div class="payment">
+                <img src="~/assets/images/icons/success-icon.png" alt="successIcon">
+                <h2>Payment Successful</h2>
+                <p>Thank you for your payment. Your transaction has been completed. A confirmation  email has been sent to <span>@Model.Email</span></p>
+
+                <div class="order__detail">
+                    <div class="order">
+                        <div>
+                        <h2 id="details-info">Order Details</h2>
+                        <span class="order-line"></span>
+
+                        </div>
+                        <span class="line" style="background-color: red;"></span>
+
+                    </div>
+                <div class="order__detail__main">
+                    <div class="order__detail__item">
+                        <span class="main-span">Order Number</span>
+                        <span>@Model.OrderNumber</span>
+                    </div>
+                    <div class="order__detail__item">
+                            <span class="main-span">Order Date</span>
+                        <span>@Model.DateTime</span>
+                    </div>
+                    <div class="order__detail__item">
+                            <span class="main-span">Order Total</span>
+                            <div>
+
+                            <span id="total-price">@Model.totalPrice</span><span> ₼</span>
+                            </div>
+                    </div>
+                </div>
+
+                    <a asp-controller="home" asp-action="index" style="text-align: center; cursor: pointer; text-decoration: underline; font-size: unset; margin-top: 17px; ">Back to Home</a>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+</html>

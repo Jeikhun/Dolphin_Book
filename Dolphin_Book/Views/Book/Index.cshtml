@@ -4,14 +4,28 @@
 
 @section script {
     <script src="~/assets/js/book.js"></script>
-    <script src="~/assets/js/custom.js"></script>
     <script src="~/assets/js/Layout.js"></script>
+    <script src="~/assets/js/custom.js"></script>
 }
 
 @model BookVM;
 @{
     int rIC = 0;
 }
+
+<div class="toast">
+    <div class="toast-content">
+        <i class="bi toast-check"></i>
+        <div class="message">
+            <span class="message-text text-1">Success</span>
+            <span class="message-text text-2">Məhsul Uğurla Əlavə edildi...</span>
+        </div>
+    </div>
+    <i class="uil uil-multiply toast-close"></i>
+    <div class="progress"></div>
+</div>
+
+
 <div class="book-page-header">
     <div class="search-result">
         <h2>Kitab</h2>
@@ -146,7 +160,7 @@
                     </a>
                     <div class="basket-button">
 
-                        <button id="addToBookBasket" data-id="@book.Id" data-type="@book.ProductType?.Type" data-count="@book.StockCount"><p>Səbətə at</p></button>
+                        <button class="toast-btn" id="addToBookBasket" data-id="@book.Id" data-type="@book.ProductType?.Type" data-count="@book.StockCount"><p>Səbətə at</p></button>
                     </div>
 
                 </div>

@@ -22,6 +22,9 @@ namespace Dolphin_Book.Data.Contexts
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Setting> Settings { get; set; }
 
 

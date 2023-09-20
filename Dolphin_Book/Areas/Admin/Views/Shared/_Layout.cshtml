@@ -126,12 +126,26 @@
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a asp-area="admin" asp-controller="book" asp-action="index" class="menu-link">
+
+                            <i class="menu-icon tf-icons bx bx-book-alt"></i>
+                            <div data-i18n="Analytics">Book</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-area="admin" asp-controller="toy" asp-action="index" class="menu-link">
+
+                            <i class="menu-icon tf-icons bx bx-happy-beaming"></i>
+                            <div data-i18n="Analytics">Toy</div>
+                        </a>
+                    </li>
                     @if (User.Claims.Any(x => x.Value == "SuperAdmin"))
                     {
 
                         <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                                <i class="menu-icon tf-icons bx bx-book-alt"></i>
+                                <i class='menu-icon bx bxs-user'></i>
                                 <div data-i18n="Authentications">Account</div>
                             </a>
                             <ul class="menu-sub">
@@ -155,53 +169,43 @@
                     <li class="menu-item">
                         <a href="#" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
-                            <div data-i18n="Layouts">Create</div>
+                            <div data-i18n="Layouts">Other</div>
                         </a>
 
                         <ul class="menu-sub">
                             <li class="menu-item">
                                 <a asp-area="admin" asp-controller="slider" asp-action="index" class="menu-link">
-                                    <div data-i18n="Without menu">Create Slide</div>
+                                    <div data-i18n="Without menu">Slide</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a asp-area="admin" asp-controller="category" asp-action="index" class="menu-link">
-                                    <div data-i18n="Without menu">Create Category</div>
+                                    <div data-i18n="Without menu">Category</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a asp-area="admin" asp-controller="language" asp-action="index" class="menu-link">
-                                    <div data-i18n="Without navbar">Create Language</div>
+                                    <div data-i18n="Without navbar">Language</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a asp-action="index" asp-controller="author" asp-area="admin" class="menu-link">
-                                    <div data-i18n="Container">Create Author</div>
+                                    <div data-i18n="Container">Author</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a asp-action="index" asp-controller="seller" asp-area="admin" class="menu-link">
-                                    <div data-i18n="Fluid">Create Seller</div>
+                                    <div data-i18n="Fluid">Seller</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a asp-action="index" asp-controller="publisher" asp-area="admin" class="menu-link">
-                                    <div data-i18n="Fluid">Create Publisher</div>
+                                    <div data-i18n="Fluid">Publisher</div>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a asp-action="index" asp-controller="producttype" asp-area="admin" class="menu-link">
                                     <div data-i18n="Fluid">Product Type</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a asp-action="index" asp-controller="book" asp-area="admin" class="menu-link">
-                                    <div data-i18n="Fluid">Book</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a asp-action="index" asp-controller="toy" asp-area="admin" class="menu-link">
-                                    <div data-i18n="Fluid">Toy</div>
                                 </a>
                             </li>
                         </ul>

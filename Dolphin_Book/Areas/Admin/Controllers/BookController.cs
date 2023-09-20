@@ -90,7 +90,7 @@ namespace Dolphin_Book.Areas.Admin.Controllers
 				ModelState.AddModelError("FormFile", "wrong Size");
 				return View();
 			}
-			book.Image = book.FormFile.CreateImage(_env.WebRootPath, "admin/img/images");
+			book.Image = book.FormFile.CreateImage(_env.WebRootPath, "admin/img/images/");
 
 
 			foreach (var item in book.CategoryIds)
@@ -183,7 +183,12 @@ namespace Dolphin_Book.Areas.Admin.Controllers
 			{
 				return View(book);
 			}
+			if(newBook.CategoryIds == null)
+			{
 
+                ModelState.AddModelError("CategoryIds", "Category Daxil edilməlidir...");
+                return View(book);
+            }
 			List<BookCategory> removeCategory = await _context.BookCategories.
 				Where(x => !newBook.CategoryIds.Contains(x.CategoryId)).ToListAsync();
 
@@ -217,18 +222,21 @@ namespace Dolphin_Book.Areas.Admin.Controllers
 					ModelState.AddModelError("FormFile", "Wrong Size!");
 					return View();
 				}
-				if (book.Image != null)
+				if (book.Image != null )
 				{
-					Helper.RemoveImage(_env.WebRootPath, "admin/img/images", book.Image);
+					Helper.RemoveImage(_env.WebRootPath, "admin/img/images/", book.Image);
 
 				}
-
-				newBook.Image = newBook.FormFile.CreateImage(_env.WebRootPath, "admin/img/images");
+				newBook.Image = newBook.FormFile.CreateImage(_env.WebRootPath, "admin/img/images/");
 				if (newBook.Image == null)
 				{
 					ModelState.AddModelError("FormFile", "Image is null!");
-					return View();
+					return View(book);
 				}
+            }
+			else
+			{
+				newBook.Image = book.Image;
 			}
 			newBook.CreatedAt = book.CreatedAt;
 			newBook.UpdatedAt = DateTime.Now;

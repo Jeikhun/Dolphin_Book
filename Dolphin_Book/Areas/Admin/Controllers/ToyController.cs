@@ -110,6 +110,7 @@ namespace Dolphin_Book.Areas.Admin.Controllers
                 };
                 await _context.ToyCategories.AddAsync(toyCategory);
             }
+            toy.CreatedAt = DateTime.Now;
             await _context.AddAsync(toy);
 
             await _context.SaveChangesAsync();
@@ -215,6 +216,7 @@ namespace Dolphin_Book.Areas.Admin.Controllers
                     await _context.ToyImages.AddAsync(toyImage);
                 }
             }
+            toy.UpdatedAt = DateTime.Now;
             _context.Toys.Update(toy);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -233,7 +235,11 @@ namespace Dolphin_Book.Areas.Admin.Controllers
             productImage.isMain = true;
 
             ToyImage? productImage1 = await _context.ToyImages.Where(x => x.isMain && x.ToyId == productImage.ToyId).FirstOrDefaultAsync();
-            productImage1.isMain = false;
+            if (productImage1 is not null)
+            {
+                productImage1.isMain = false;
+
+            }
 
             await _context.SaveChangesAsync();
             return Json(new

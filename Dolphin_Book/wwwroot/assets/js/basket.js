@@ -1,4 +1,4 @@
-
+﻿
 //quantity box
 function wcqib_refresh_quantity_increments() {
     jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
@@ -124,10 +124,13 @@ jQuery(function ($) {
     })
 
 
-
 })
 
 jQuery(function ($) {
+
+
+
+
     $(document).on('click', '#addToyToBasket', function () {
 
         var id = $(this).data('id');
@@ -156,16 +159,45 @@ jQuery(function ($) {
 //    console.log("2")
 
 //})
+const firstButton = document.querySelector('#gocalculate');
+const secondButton = document.querySelector('#second-button');
+var subTotalPrice;
 function displayRadioValue() {
+    // clicked <li> element
+
+    firstButton.style.display = "initial";
+    secondButton.style.display = "none";
+
+    var clickedLi = event.currentTarget;
+
+    // Bu <li> icindeki label
+    var labelElement = clickedLi.querySelector('label');
+
+    // <label> icindeki span
+    var spanElement = labelElement.querySelector('span');
+
+    if (spanElement) {
+        // <span> tagine catmag
+        var checkedRadioContent = spanElement.textContent;
+        console.log(checkedRadioContent);
+    }
     var totalPrice = parseFloat(document.querySelector("#book-total-price").textContent);
-    
-    console.log(totalPrice);
-    var radio2 = parseFloat(document.querySelector("input[name=shipping_method]:checked").parentElement.lastElementChild.firstElementChild.textContent);
+
+    var radio2 = parseFloat(checkedRadioContent);
     if (isNaN(radio2)) {
         radio2 = 0;
     }
-    console.log(radio2);
-    const subTotalPrice = totalPrice + radio2;
+    subTotalPrice = totalPrice + radio2;
     document.getElementById("total-price-span").innerHTML
-        = subTotalPrice;
+        = subTotalPrice.toFixed(2);
+    localStorage.setItem("kargo", radio2);
+
+
+
 }
+$(document).on('click', '#gocalculate', function (e) {
+    var myString = `${subTotalPrice}`;
+    var encodedString = encodeURIComponent(myString);
+    $('#totalPriceInput').val(encodedString);
+    $('#myForm').submit(); // Formu gönder
+});
