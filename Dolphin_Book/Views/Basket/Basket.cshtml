@@ -94,12 +94,15 @@
                                 </td>
                                 <td class="product-price">
                                     <div class="product-price-contain">
-
-                                        <del>
-                                            <p class="ex-price">
-                                                23.99<span>₼</span>
-                                            </p>
-                                        </del>
+                                            @if(product.exPrice != product.Price)
+                                            {
+                                                <del>
+                                                <p class="ex-price">
+                                                    @product.exPrice?.ToString("0.##")<span>₼</span>
+                                                </p>
+                                            </del>
+                                                
+                                            }
                                         <div>
                                             <p class="new-price">
                                                     @product.Price.ToString("0.##")<span>₼</span>
@@ -166,7 +169,7 @@
                                         </li>
                                         <li onclick="displayRadioValue()">
                                             <input type="radio" id="shipping_method_2" name="shipping_method">
-                                            <label for="shipping_method_2">Zabrat, Hövsan, Xırdalan, Masazır: <span>@Model.Area2</span>
+                                            <label for="shipping_method_2">Zabrat, Hövsan, Xırdalan, Masazır: <span>@Model.Area3</span>
                                                 <span>₼</span>
                                             </label>
                                         </li>

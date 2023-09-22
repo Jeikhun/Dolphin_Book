@@ -91,9 +91,22 @@ namespace Dolphin_Book.Areas.Admin.Controllers
 				return View();
 			}
 			book.Image = book.FormFile.CreateImage(_env.WebRootPath, "admin/img/images/");
+			if(book.SalePercentage<0 ||  book.SalePercentage > 100)
+			{
+                ModelState.AddModelError("SalePercentage", "Wrong Value...");
+                return View();
+			}
+            else if (book.SalePercentage == null || book.SalePercentage==0)
+            {
+				book.SalePercentage = 100;
+            }
+			else
+			{
+				book.SalePercentage = 100 - book.SalePercentage;
+			}
+			book.exPrice = (book.SalePrice*100)/ book.SalePercentage;
 
-
-			foreach (var item in book.CategoryIds)
+            foreach (var item in book.CategoryIds)
 			{
 				if (!await _context.Categories.AnyAsync(x => x.Id == item))
 				{
@@ -140,7 +153,7 @@ namespace Dolphin_Book.Areas.Admin.Controllers
 				Include(x=>x.Publisher).Where(x=> !x.IsDeleted).
                 Include(x => x.ProductType).Where(x => !x.IsDeleted)
                 .FirstOrDefaultAsync();
-
+			book.SalePercentage = 100 - book.SalePercentage;
 			if (book == null)
 			{
 				return NotFound();
@@ -183,16 +196,30 @@ namespace Dolphin_Book.Areas.Admin.Controllers
 			{
 				return View(book);
 			}
-			if(newBook.CategoryIds == null)
+			if (newBook.SalePercentage < 0 || newBook.SalePercentage > 100)
+			{
+				ModelState.AddModelError("SalePercentage", "Wrong Value...");
+				return View(book);
+			}
+			else if (newBook.SalePercentage == null || newBook.SalePercentage == 0)
+			{
+				newBook.SalePercentage = 100;
+			}
+			else
+			{
+				newBook.SalePercentage = 100 - newBook.SalePercentage;
+			}
+			newBook.exPrice = (newBook.SalePrice * 100) / newBook.SalePercentage;
+			if (newBook.CategoryIds == null)
 			{
 
                 ModelState.AddModelError("CategoryIds", "Category Daxil edilməlidir...");
                 return View(book);
             }
-			List<BookCategory> removeCategory = await _context.BookCategories.
-				Where(x => !newBook.CategoryIds.Contains(x.CategoryId)).ToListAsync();
+			//List<BookCategory> removeCategory = await _context.BookCategories.
+			//	Where(x => !newBook.CategoryIds.Contains(x.CategoryId)).ToListAsync();
 
-			_context.BookCategories.RemoveRange(removeCategory);
+			//_context.BookCategories.RemoveRange(removeCategory);
 			foreach (var item in newBook.CategoryIds)
 			{
 				if (_context.BookCategories.Where(x => x.BookId == id && x.CategoryId == item).Count() > 0)

@@ -17,7 +17,7 @@ namespace Dolphin_Book.Controllers
             double totalPrice = double.Parse(totalPriceSTR);
             PaymentVM model = new PaymentVM
             {
-                Price = totalPrice,
+                Price = totalPrice.ToString("0.##"),
             };
             return View(model);
         }

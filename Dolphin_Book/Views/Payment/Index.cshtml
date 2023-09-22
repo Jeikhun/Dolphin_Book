@@ -80,7 +80,7 @@
                 <label for="">
                     <input type="checkbox">
                 </label>
-                <span>Faturam için farklı adres kullan. </span>
+                <span>Faktura üçün fərqli adres istifadə et </span>
             </div>
         </div>
         <div class="fourth">
@@ -90,7 +90,7 @@
                     <p>Ödəniş Üsulu </p>
                 </div>
                 <div class="pay_choose">
-                    <h3>Kredi Kartı / Banka Kartı ile Öde</h3>
+                    <h3>Kredit Kartı / Bank Kartı ile Öde</h3>
                 </div>
             </div>
         </div>
@@ -339,9 +339,8 @@
             </div>
             <div class="teslimat">
                 <label for="">
-                    <input type="radio">
-                    <span>Standart Teslimat</span>
-                    <p>15:00’a kadar verilen siparişler aynı gün kargoda</p>
+                    <span>Standart Çatdırılma</span>
+                    <p>15:00’a qədər verilen sifarişlər eyni gün karqoda</p>
                 </label>
             </div>
         </div>
@@ -350,7 +349,7 @@
         <div class="orderss">
             <p>Sifariş</p>
             <div class="flex">
-                <p>4 məhsul</p>
+                <p>@vm.Count məhsul</p>
                 <div class="total1">
                     <p>Toplam</p>
                             <div style ="display: flex; gap: 4px;">
@@ -363,16 +362,16 @@
                 <div class="checkouts">
                     <label for="">
                         <input type="checkbox" name="condition" id="condition-1">
-                        <label for="condition-1">Razılıq Formu və Uzağdan Satış Sözləşməsi’ni oxudum, qəbul edirəm.</label>
+                        <label for="condition-1">Razılıq Formunu oxudum və qəbul edirəm.</label>
                     </label>
                     <label for="">
                         <input type="checkbox" name="condition" id="condition-2">
-                        <label for="condition-2">Uzağdan satış sözləşməsinin açığlamasını okudum, kabul ediyorum.</label>
+                        <label for="condition-2">Uzağdan satış sözləşməsinin açığlamasını oxudum, qəbul edirəm.</label>
                     </label>
                 </div>
                 <div class="total_amount">
                     <p>Toplam:</p>
-                            <p class="total-price-p">@Model.Price <span>₼</span></p>
+                            <p class="total-price-p">@Model.Price.ToString() <span>₼</span></p>
                 </div>
                  <form id="myForm" action="/order/orderconfirmation" method="post">
                             <input asp-for="@Model.Price" type="hidden" id="totalPriceInput">

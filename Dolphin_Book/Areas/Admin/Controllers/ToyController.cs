@@ -67,6 +67,20 @@ namespace Dolphin_Book.Areas.Admin.Controllers
                 ModelState.AddModelError("", "Image must be added!");
                 return View(toy);
             }
+            if (toy.SalePercentage < 0 || toy.SalePercentage > 100)
+            {
+                ModelState.AddModelError("SalePercentage", "Wrong Value...");
+                return View();
+            }
+            else if (toy.SalePercentage == null || toy.SalePercentage == 0)
+            {
+                toy.SalePercentage = 100;
+            }
+            else
+            {
+                toy.SalePercentage = 100 - toy.SalePercentage;
+            }
+            toy.exPrice = (toy.SalePrice * 100) / toy.SalePercentage;
             foreach (var item in toy.FormFiles)
             {
 
@@ -141,7 +155,8 @@ namespace Dolphin_Book.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(toy);
+			toy.SalePercentage = 100 - toy.SalePercentage;
+			return View(toy);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -174,10 +189,24 @@ namespace Dolphin_Book.Areas.Admin.Controllers
             {
                 return View(updatedToy);
             }
-            List<ToyCategory> RemoveableCategory = await _context.ToyCategories.
-                Where(x => !toy.CategoryIds.Contains(x.CategoryId)).ToListAsync();
+			if (toy.SalePercentage < 0 || toy.SalePercentage > 100)
+			{
+				ModelState.AddModelError("SalePercentage", "Wrong Value...");
+				return View(updatedToy);
+			}
+			else if (toy.SalePercentage == null || toy.SalePercentage == 0)
+			{
+				toy.SalePercentage = 100;
+			}
+			else
+			{
+				toy.SalePercentage = 100 - toy.SalePercentage;
+			}
+			toy.exPrice = (toy.SalePrice * 100) / toy.SalePercentage;
+			//List<ToyCategory> RemoveableCategory = await _context.ToyCategories.
+   //             Where(x => !toy.CategoryIds.Contains(x.CategoryId)).ToListAsync();
 
-            _context.ToyCategories.RemoveRange(RemoveableCategory);
+   //         _context.ToyCategories.RemoveRange(RemoveableCategory);
             foreach (var item in toy.CategoryIds)
             {
                 if (_context.ToyCategories.Where(x => x.ToyId == id && x.CategoryId == item).Count() > 0)

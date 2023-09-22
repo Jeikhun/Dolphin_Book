@@ -216,9 +216,10 @@ namespace Dolphin_Book.Service.Services.Implementations
                                 Price = item.book.SalePrice,
                                 AuthorName = item.book.Author.FullName,
                                 PublisherName = item.book.Publisher.Name,
-                                type = "book"
-                                
-                            });
+                                type = "book",
+                                exPrice = item.book.exPrice
+
+                            }) ;
 
                         }
                         else
@@ -231,7 +232,8 @@ namespace Dolphin_Book.Service.Services.Implementations
                                 Id = item.ToyId,
                                 Price = item.toy.SalePrice,
                                 PublisherName = item.toy.Publisher.Name,
-                                type = "toy"
+                                type = "toy",
+                                exPrice = item.toy.exPrice
                             });;
                         }
                     }

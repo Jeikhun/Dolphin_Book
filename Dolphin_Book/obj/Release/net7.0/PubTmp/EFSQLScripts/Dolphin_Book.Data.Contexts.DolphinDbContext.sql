@@ -655,3 +655,40 @@ GO
 COMMIT;
 GO
 
+BEGIN TRANSACTION;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230922000430_newRowAdded')
+BEGIN
+    ALTER TABLE [Toys] ADD [SalePercentage] int NULL;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230922000430_newRowAdded')
+BEGIN
+    ALTER TABLE [Toys] ADD [exPrice] float NULL;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230922000430_newRowAdded')
+BEGIN
+    ALTER TABLE [Books] ADD [SalePercentage] int NULL;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230922000430_newRowAdded')
+BEGIN
+    ALTER TABLE [Books] ADD [exPrice] float NULL;
+END;
+GO
+
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20230922000430_newRowAdded')
+BEGIN
+    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+    VALUES (N'20230922000430_newRowAdded', N'7.0.10');
+END;
+GO
+
+COMMIT;
+GO
+

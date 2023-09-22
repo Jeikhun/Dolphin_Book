@@ -176,6 +176,9 @@ namespace Dolphin_Book.Data.Migrations
                     b.Property<double>("PurchasePrice")
                         .HasColumnType("float");
 
+                    b.Property<int?>("SalePercentage")
+                        .HasColumnType("int");
+
                     b.Property<double>("SalePrice")
                         .HasColumnType("float");
 
@@ -190,6 +193,9 @@ namespace Dolphin_Book.Data.Migrations
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
+
+                    b.Property<double?>("exPrice")
+                        .HasColumnType("float");
 
                     b.Property<bool>("inStock")
                         .HasColumnType("bit");
@@ -587,6 +593,9 @@ namespace Dolphin_Book.Data.Migrations
                     b.Property<double>("PurshacePrice")
                         .HasColumnType("float");
 
+                    b.Property<int?>("SalePercentage")
+                        .HasColumnType("int");
+
                     b.Property<double>("SalePrice")
                         .HasColumnType("float");
 
@@ -598,6 +607,9 @@ namespace Dolphin_Book.Data.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<double?>("exPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

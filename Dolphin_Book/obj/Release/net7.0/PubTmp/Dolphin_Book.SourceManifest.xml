@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
   <IisApp path="C:\Users\GF65\source\repos\Dolphin_Book\Dolphin_Book\obj\Release\net7.0\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\GF65\source\repos\Dolphin_Book\Dolphin_Book\obj\Release\net7.0\PubTmp\EFSQLScripts\Dolphin_Book.Data.Contexts.DolphinDbContext.sql" />
 </sitemanifest>

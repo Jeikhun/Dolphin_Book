@@ -3,4 +3,7 @@
   <parameter name="IIS Web Application Name" description="" value="jeikhunjalilov-001-site1" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\obj\\Release\\net7\.0\\PubTmp\\Out\\$" />
   </parameter>
+  <parameter name="Dolphin_Book.Data.Contexts.DolphinDbContext" description="" value="Data Source=SQL5107.site4now.net;Initial Catalog=db_a9f0b2_dolphin;User Id=db_a9f0b2_dolphin_admin;Password=qwerty123" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\obj\\Release\\net7\.0\\PubTmp\\EFSQLScripts\\Dolphin_Book\.Data\.Contexts\.DolphinDbContext\.sql$" />
+  </parameter>
 </parameters>

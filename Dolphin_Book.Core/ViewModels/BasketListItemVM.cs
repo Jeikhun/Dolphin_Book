@@ -13,5 +13,6 @@ namespace Dolphin_Book.Core.ViewModels
         public string? PublisherName { get; set; }
         
         public string? type { get; set; }
+        public double? exPrice { get; set; }
     }
 }

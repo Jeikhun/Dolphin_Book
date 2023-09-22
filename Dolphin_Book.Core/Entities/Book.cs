@@ -19,6 +19,8 @@ namespace Dolphin_Book.Core.Entities
         public double PurchasePrice { get; set; }
         [Required]
         public double SalePrice { get; set; }
+        public int? SalePercentage { get; set; }
+        public double? exPrice { get; set; }
         [Required]
         public int StockCount { get; set; }
         

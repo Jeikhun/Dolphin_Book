@@ -191,8 +191,6 @@ function displayRadioValue() {
     document.getElementById("total-price-span").innerHTML
         = subTotalPrice.toFixed(2);
     localStorage.setItem("kargo", radio2);
-    console.log(subTotalPrice.toFixed(2));
-    console.log("Jeikhun");
 
 
 

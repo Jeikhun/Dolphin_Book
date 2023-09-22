@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TXwA+h4f3Q4Md8t6NOb+xw+dU6IM/Nt8g0xB5NN7MaQ=",
+  "Hash": "T4xzWOYAqzjz0DmLi/RqCEOJiFHRHZqY6i6JSYsSpDw=",
   "Source": "Dolphin_Book",
   "BasePath": "_content/Dolphin_Book",
   "Mode": "Default",
@@ -986,6 +986,23 @@
       "OriginalItemSpec": "wwwroot\\admin\\img\\images\\3d89500d-3caf-415f-9466-4b94200654cadc182d47-949a-435a-a5f6-91b9554e1e2cOzguven400px_1024x1024@2x.webp"
     },
     {
+      "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\41e80dd4-c8a8-46d4-abc7-edfd5a2f521a71iQSkrLL7L._AC_UF1000,1000_QL80_.jpg",
+      "SourceId": "Dolphin_Book",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\",
+      "BasePath": "_content/Dolphin_Book",
+      "RelativePath": "admin/img/images/41e80dd4-c8a8-46d4-abc7-edfd5a2f521a71iQSkrLL7L._AC_UF1000,1000_QL80_.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\img\\images\\41e80dd4-c8a8-46d4-abc7-edfd5a2f521a71iQSkrLL7L._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
       "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\43b2d695-d44e-4bca-984e-2fd64c4a39163d89500d-3caf-415f-9466-4b94200654cadc182d47-949a-435a-a5f6-91b9554e1e2cOzguven400px_1024x1024@2x.webp",
       "SourceId": "Dolphin_Book",
       "SourceType": "Discovered",
@@ -1377,6 +1394,23 @@
       "OriginalItemSpec": "wwwroot\\admin\\img\\images\\a33441fc-eca4-424a-a569-9ff64bef9864clarissa-willis.webp"
     },
     {
+      "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\a3a3edd8-9bac-4b6c-8fbb-a50fe4abe37aimage-04-08-23-15-05 (2)-modified (2).png",
+      "SourceId": "Dolphin_Book",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\",
+      "BasePath": "_content/Dolphin_Book",
+      "RelativePath": "admin/img/images/a3a3edd8-9bac-4b6c-8fbb-a50fe4abe37aimage-04-08-23-15-05 (2)-modified (2).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\img\\images\\a3a3edd8-9bac-4b6c-8fbb-a50fe4abe37aimage-04-08-23-15-05 (2)-modified (2).png"
+    },
+    {
       "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\a54ff34b-7019-4c4f-8dfd-cb73330da54b2__1__3ec937256a75f5a0686dab8822a2d9fe.png",
       "SourceId": "Dolphin_Book",
       "SourceType": "Discovered",
@@ -1649,6 +1683,23 @@
       "OriginalItemSpec": "wwwroot\\admin\\img\\images\\d4f2a703-8e4c-4049-b37f-62ea69e312f7bilincaltinin-gucu-zihinsel-ve-bedensel-iyilesme-6437312480364.webp"
     },
     {
+      "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\e06a7df9-71a1-44a7-9998-d84b9ea78883image-04-08-23-15-05 (2)-modified (2).png",
+      "SourceId": "Dolphin_Book",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\",
+      "BasePath": "_content/Dolphin_Book",
+      "RelativePath": "admin/img/images/e06a7df9-71a1-44a7-9998-d84b9ea78883image-04-08-23-15-05 (2)-modified (2).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\img\\images\\e06a7df9-71a1-44a7-9998-d84b9ea78883image-04-08-23-15-05 (2)-modified (2).png"
+    },
+    {
       "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\e45614f6-2839-4a79-89b6-dfe45cb0caec1__1__e4569760de50121ba2f0dde816b9cc79.png",
       "SourceId": "Dolphin_Book",
       "SourceType": "Discovered",
@@ -1751,6 +1802,23 @@
       "OriginalItemSpec": "wwwroot\\admin\\img\\images\\f31d1567-04c2-4ed0-9259-71d3c6940821unnamed__3_.png"
     },
     {
+      "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\f32a1682-fa1c-49b5-9bd8-d6691b9af2c7oshoRajneeshpuram3.webp",
+      "SourceId": "Dolphin_Book",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\",
+      "BasePath": "_content/Dolphin_Book",
+      "RelativePath": "admin/img/images/f32a1682-fa1c-49b5-9bd8-d6691b9af2c7oshoRajneeshpuram3.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\img\\images\\f32a1682-fa1c-49b5-9bd8-d6691b9af2c7oshoRajneeshpuram3.webp"
+    },
+    {
       "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\f8755d45-50ce-4af2-a66f-13f2bbecf1ffdownload (1).jpg",
       "SourceId": "Dolphin_Book",
       "SourceType": "Discovered",
@@ -1783,6 +1851,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\img\\images\\f9889198-a614-4cf0-baca-9ed71bfe83990x0-mucahit-ozturk-jpg.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\f9a036de-0d92-4f66-88a7-684cbdf6c52a71iQSkrLL7L._AC_UF1000,1000_QL80_.jpg",
+      "SourceId": "Dolphin_Book",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\",
+      "BasePath": "_content/Dolphin_Book",
+      "RelativePath": "admin/img/images/f9a036de-0d92-4f66-88a7-684cbdf6c52a71iQSkrLL7L._AC_UF1000,1000_QL80_.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin\\img\\images\\f9a036de-0d92-4f66-88a7-684cbdf6c52a71iQSkrLL7L._AC_UF1000,1000_QL80_.jpg"
     },
     {
       "Identity": "C:\\Users\\GF65\\source\\repos\\Dolphin_Book\\Dolphin_Book\\wwwroot\\admin\\img\\images\\lego-harry-potter-hogwarts-araba-ve-testraller-76400-646b9c187460d.webp",

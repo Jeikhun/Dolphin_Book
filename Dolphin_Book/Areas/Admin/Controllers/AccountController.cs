@@ -15,10 +15,12 @@ namespace Dolphin_Book.Areas.Admin.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IWebHostEnvironment _env;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _env = env;
         }
         [HttpGet]
         public IActionResult Login()
@@ -97,8 +99,18 @@ namespace Dolphin_Book.Areas.Admin.Controllers
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("jeikhunjalil@gmail.com");
             mail.To.Add(user.Email);
-            mail.Subject = "Reset Password";
+            mail.Subject = "Confirm Email";
             mail.Body = $"<a href='{confirmationLink}'>Confirm Email</a>";
+            string body = string.Empty;
+            string path = Path.Combine(_env.WebRootPath, "assets", "Templates", "email.html");
+            using (StreamReader SourceReader = System.IO.File.OpenText(path))
+            {
+                body = SourceReader.ReadToEnd();
+            }
+            body = body.Replace("{{Link}}", confirmationLink);
+            body = body.Replace("{{Name}}", user.UserName);
+            body = body.Replace("{{Text}}", "Confirm Email");
+            mail.Body = body;
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
